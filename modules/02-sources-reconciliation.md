@@ -1,4 +1,4 @@
-# 02 — Sources, artefacts et réconciliation
+# 02 - Sources, artefacts et réconciliation
 
 **Phase : socle · Durée : 4 h**
 
@@ -9,7 +9,7 @@
 - Distinguer le `Kustomization` Flux du fichier `kustomization.yaml` de Kustomize.
 - Décrire build, validation, apply, health assessment, inventaire et drift correction.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Sources uniformisées en artefacts** : source-controller résout/fetch, archive et publie des artefacts adressables par révision. Les consommateurs n'ont pas besoin de cloner eux-mêmes chaque dépôt.
 - **Révision et digest** : une branche/tag est une règle de sélection, pas nécessairement une identité immuable. Le statut donne la révision/digest réellement traité ; pour les déploiements sensibles, privilégier la traçabilité et les références immuables quand possible.
@@ -18,7 +18,7 @@
 - **Server-side apply et inventory** : Flux suit les objets qu'il gère et corrige les écarts détectés. `prune` permet de collecter des objets retirés du rendu ; il peut être destructeur.
 - **Helm** : helm-controller transforme `HelmRelease` en opérations Helm et observe le statut du release ; le chart est lui-même fourni via Source.
 
-## Lab — suivre quatre Sources et deux consommateurs
+## Lab - suivre quatre Sources et deux consommateurs
 
 1. Comparer puis manipuler les sources : GitRepository sur le dépôt du cours ; HelmRepository/HelmChart sur le dépôt chart public de test ; OCIRepository sur un OCI artifact ; Bucket sur un endpoint S3-compatible éphémère. Le secret d'accès Bucket est fourni hors Git. Pour chaque objet, observer si l'artefact est Ready et examiner sa révision/digest.
 2. Depuis le dépôt fil rouge, examiner `GitRepository/flux-system`: URL, ref, intervalle, secret éventuel, statut, revision, URL et digest d'artefact.

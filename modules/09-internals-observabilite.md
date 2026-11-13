@@ -1,4 +1,4 @@
-# 09 — Observabilité et fonctionnement interne
+# 09 - Observabilité et fonctionnement interne
 
 **Phase : expertise · Durée : 5 h**
 
@@ -9,7 +9,7 @@
 - Lire un chemin de code controller-runtime et relier le code aux statuts d'une CRD.
 - Mesurer capacité, latence, files d'attente et effets de charge dans une flotte.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Conditions et générations** : lire `Ready`, `Reconciling`, `Stalled`, reason/message et `observedGeneration`; un statut ancien ne prouve pas qu'une spec récente a été observée.
 - **Métriques et journaux** : Prometheus donne tendance/saturation/erreurs agrégées ; logs structurés donnent l'opération et la ressource ; événements sont utiles mais expirent. L'interface Flux ne remplace pas Git ni l'API Kubernetes.
@@ -18,7 +18,7 @@
 - **Code** : suivre `Reconcile`, appels de clients et conditions/résultats. Les détails d'implémentation varient entre composants ; éviter d'inférer le comportement d'un contrôleur d'un autre.
 - **UI** : Flux n'impose pas une UI centrale dans ses composants par défaut. Le Flux Web UI est intégré à Flux Operator ; il s'agit d'un projet d'écosystème à versionner/opérer séparément. Utiliser un accès RBAC adapté : boutons de réconciliation/suspension impliquent des droits d'écriture.
 
-## Lab — observer et lire un contrôleur
+## Lab - observer et lire un contrôleur
 
 1. Installer Prometheus Operator/Grafana via Git, configurer la découverte du port métriques Flux (8080) et importer ou construire un dashboard avec `gotk_reconcile_duration_seconds`, erreurs/retries, CPU/mémoire, workload queue et métriques CRD via kube-state-metrics.
 2. Déclencher un reconcile manuel et une panne temporaire. Capturer les événements, conditions, logs et métriques au même horodatage.

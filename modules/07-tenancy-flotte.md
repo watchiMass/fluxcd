@@ -1,4 +1,4 @@
-# 07 — Multi-tenancy et gestion de flotte
+# 07 - Multi-tenancy et gestion de flotte
 
 **Phase : expertise · Durée : 5 h**
 
@@ -9,7 +9,7 @@
 - Séparer les responsabilités du cluster management et des clusters cibles.
 - Concevoir onboarding, politiques et stratégie multi-clusters.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **RBAC du contrôleur** : les contrôleurs démarrent souvent avec des permissions larges pour l'administration de plateforme. Une équipe ne doit pas hériter implicitement de ces droits.
 - **Impersonation** : `spec.serviceAccountName` de Kustomization/HelmRelease limite l'application aux droits Kubernetes de ce ServiceAccount. Le contrôleur doit autoriser l'identité et les références de namespaces sont à verrouiller.
@@ -17,7 +17,7 @@
 - **Management vs target** : le cluster management garde la définition de flotte ; les sources produisent des artefacts réutilisables. Les clusters cibles ont leur propre identité, credentials et source de vérité explicites.
 - **Sécurité d'accès** : credentials et clés ne doivent pas être copiés indistinctement entre clusters. Workload identity réduit les secrets statiques ; valider le blast radius d'une compromission.
 
-## Lab — deux équipes, deux clusters (ou deux contextes isolés)
+## Lab - deux équipes, deux clusters (ou deux contextes isolés)
 
 1. Créer deux namespaces/équipes avec ServiceAccounts et RBAC minimaux : une équipe peut gérer ses workloads, pas namespaces, CRD, RBAC ou objets d'autrui.
 2. Configurer Flux de lab en mode multi-tenant lockdown selon la doc v2.10.0. Auditer les arguments des contrôleurs, les ClusterRoles et références inter-namespace.

@@ -18,7 +18,7 @@ Formation avancée pour concevoir, exploiter, dépanner et expliquer une platefo
 |---|---|---|---:|
 | [01 — Socle et bootstrap](modules/01-socle-bootstrap.md) | 1 | GitOps, architecture, contrôleurs, bootstrap | 2 h |
 | [02 — Sources et réconciliation](modules/02-sources-reconciliation.md) | 1 | Sources, artefacts, Kustomize, Helm, boucle de réconciliation | 4 h |
-| [03 — Dépôts et livraison multi-environnements](modules/03-depots-environnements.md) | 2 | Structure, overlays, dépendances, santé, prune, drift, postBuild | 5 h |
+| [03 - Dépôts et livraison multi-environnements](modules/03-depots-environnements.md) | 2 | Structure, overlays, dépendances, santé, prune, drift, postBuild | 5 h |
 | [04 — Helm en production](modules/04-helm-production.md) | 2 | HelmRelease, valeurs, remediation, tests et upgrades | 4 h |
 | [05 — Secrets et chaîne de confiance](modules/05-secrets-signatures.md) | 2 | SOPS, age/KMS, cosign, provenance et menaces | 4 h |
 | [06 — Images, notifications et webhooks](modules/06-automation-notifications.md) | 2 | Image automation, Alert/Provider, Receiver et Git write-back | 4 h |

@@ -1,4 +1,4 @@
-# 05 — Secrets, SOPS et chaîne de confiance
+# 05 - Secrets, SOPS et chaîne de confiance
 
 **Phase : maîtrise · Durée : 4 h**
 
@@ -9,14 +9,14 @@
 - Vérifier les signatures cosign et la provenance des artefacts.
 - Décrire les limites de confiance entre Git, registry, contrôleurs et cluster.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **SOPS** : le dépôt contient le ciphertext ; kustomize-controller déchiffre pendant la build à l'aide d'une clé age ou d'un fournisseur KMS configuré. Le Secret en clair existe dans l'API Kubernetes et doit être protégé aussi par RBAC, encryption at rest et sauvegardes.
 - **Clé et identité** : age convient à un lab et à des clés contrôlées ; KMS/workload identity évite de distribuer une clé maître, au prix d'une dépendance d'identité cloud. La clé privée ne va jamais dans Git.
 - **Signature** : pour un artefact OCI consommé comme source, `OCIRepository.spec.verify` peut faire vérifier Cosign par source-controller (clé publique ou keyless avec règles OIDC) et publier une condition `SourceVerified`. Cela bloque l'usage de l'artefact si la vérification requise échoue. La vérification locale d'une image de contrôleur Flux est une autre étape. Une signature atteste une identité/claim selon une politique, pas la qualité du logiciel.
 - **Modèle de menace** : un dépôt malveillant peut demander des actions de cluster. Least privilege, revue/approbation, admission policy, signatures, source immuable et RBAC sont complémentaires.
 
-## Lab — chiffrement, rotation et vérification
+## Lab - chiffrement, rotation et vérification
 
 1. Installer `sops`, `age` et `cosign` localement, générer une clé age réservée au lab. Ajouter uniquement la clé publique/recipient et `.sops.yaml` au dépôt.
 2. Créer un manifeste Secret factice, chiffrer ses valeurs avant commit ; vérifier que le diff Git ne révèle pas le plaintext.

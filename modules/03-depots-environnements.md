@@ -1,4 +1,4 @@
-# 03 — Dépôts, environnements et graphe de livraison
+# 03 - Dépôts, environnements et graphe de livraison
 
 **Phase : maîtrise · Durée : 5 h**
 
@@ -9,7 +9,7 @@
 - Créer des étapes Flux ordonnées via `dependsOn`, et définir la notion de santé utile.
 - Manipuler `prune`, `deletionPolicy`, suspension, drift, reprise, rollback et `postBuild`.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Organisation du dépôt** : un monorepo simplifie la cohérence atomique ; plusieurs dépôts réduisent les périmètres d'accès et les collisions de changements, au coût de coordination et de traçabilité inter-repos.
 - **Base/overlay** : Kustomize évite la duplication tout en rendant les écarts d'environnement visibles. Une base trop générique ou des patches empilés obscurcissent la configuration effective.
@@ -19,7 +19,7 @@
 - **Drift/suspend/revert** : suspension arrête apply et drift correction ; un rollback Git rétablit une version déclarée, pas nécessairement les données ou les effets externes.
 - **Substitution** : `postBuild.substitute`/`substituteFrom` apporte des valeurs d'environnement après le build ; ne pas y injecter de secrets en clair. Kustomize patches restent préférables pour des différences structurantes.
 
-## Lab — staging et production, infra avant apps
+## Lab - staging et production, infra avant apps
 
 1. Étendre le squelette en `apps/base`, `apps/staging`, `apps/production`, `infrastructure/controllers` et `infrastructure/configs`; écrire les règles de promotion dans un ADR court.
 2. Créer une Kustomization pour un namespace/configuration de plateforme et une Kustomization d'application dépendante via `dependsOn`.

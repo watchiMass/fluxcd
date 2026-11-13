@@ -1,4 +1,4 @@
-# Bilan — maîtrise Flux
+# Bilan - maîtrise Flux
 
 ## Checklist de compétences
 

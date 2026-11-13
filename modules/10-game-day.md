@@ -1,4 +1,4 @@
-# 10 — Game day de dépannage
+# 10 - Game day de dépannage
 
 **Phase : dépannage · Durée : 4 à 6 h**
 
@@ -9,7 +9,7 @@
 - Corriger par Git, garder un historique d'incident et prouver le retour au service.
 - Présenter un postmortem expliquant mécanisme, impact, détection et prévention.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Ordre de diagnostic** : commencer par la source et sa révision, puis la Kustomization/HelmRelease, leurs dépendances, l'objet rendu et finalement le workload.
 - **Preuves** : `flux get`, `flux logs`, `flux trace`, `flux events`, `kubectl describe`, conditions et génération observée composent une chronologie. Ne pas effacer l'évidence en corrigeant trop tôt.
@@ -17,7 +17,7 @@
 - **Récupération** : revenir à une révision Git connue, suspendre uniquement si nécessaire, préserver l'inventaire et les données, puis reprendre la réconciliation.
 - **Postmortem** : comprendre la chaîne causale, pas seulement identifier la ligne YAML en faute.
 
-## Lab — incident final
+## Lab - incident final
 
 Demander à un collègue ou à un script de préparation de choisir **3 à 5 pannes** dans les modules, sans vous révéler leur sélection. Si vous êtes seul, tirer une combinaison au hasard en utilisant seulement les indices, et masquer les fichiers de corrections.
 

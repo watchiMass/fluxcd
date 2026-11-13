@@ -1,4 +1,4 @@
-# 01 — Socle GitOps et bootstrap
+# 01 - Socle GitOps et bootstrap
 
 **Phase : socle · Durée : 2 h**
 
@@ -9,7 +9,7 @@
 - Amorcer Flux sur un cluster de lab GitHub et localiser l'état de bootstrap.
 - Décrire la boucle de rapprochement à partir d'une modification Git.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **État désiré déclaratif** : Git contient la déclaration versionnée, tandis que le contrôleur réconcilie l'état réel. Cela fournit audit, répétabilité et reprise après panne ; ce n'est pas une garantie qu'un commit soit correct.
 - **Pull et convergence** : les contrôleurs extraient le dépôt et observent Kubernetes. Le réseau entrant depuis CI vers l'API du cluster n'est pas nécessaire pour chaque déploiement.
@@ -17,7 +17,7 @@
 - **Bootstrap** : une action privilégiée installe les contrôleurs et leur configuration de sync dans Git. Les futures modifications de Flux peuvent ensuite être livrées par Git. Comprendre l'exception bootstrap évite de prétendre que l'installation initiale n'a aucun accès direct au cluster.
 - **Reconciliation, pas pipeline linéaire** : événements et intervalles réveillent les contrôleurs ; l'idempotence et les retries tolèrent les erreurs temporaires.
 
-## Lab — bootstrap et première livraison Git
+## Lab - bootstrap et première livraison Git
 
 1. Suivre les prérequis du [squelette](../depot-exemple/README.md), créer un cluster kind isolé et un dépôt GitHub privé.
 2. Contrôler les prérequis avec `flux check --pre`; installer une version CLI explicite `v2.10.0`, puis examiner `flux bootstrap github --help`.

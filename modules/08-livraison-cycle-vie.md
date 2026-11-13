@@ -1,4 +1,4 @@
-# 08 — Progressive delivery, Operator et cycle de vie Flux
+# 08 - Progressive delivery, Operator et cycle de vie Flux
 
 **Phase : expertise · Durée : 5 h**
 
@@ -9,7 +9,7 @@
 - Comparer bootstrap CLI et Flux Operator pour le cycle de vie d'une installation.
 - Mettre à jour Flux de façon contrôlée, observable et réversible.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Flagger** : génère/observe des ressources de release progressives avec un mesh, ingress ou Gateway API compatible ; analyse métriques et tests avant promotion/rollback. Sans fournisseur de routage et métriques, le canary n'est pas une preuve.
 - **Deux boucles déclaratives** : Flux gère les CRDs/contrôleurs Flagger et déclare la ressource Canary ; Flagger agit sur le rollout de l'application. Définir propriétaires de champs et éviter les conflits.
@@ -17,7 +17,7 @@
 - **Mise à jour des contrôleurs** : compatibilité CRD/controller/Kubernetes, ordre de mise à jour, canary dans un cluster non critique, fenêtre de rollback et vérification des nouveaux comportements. Le bootstrap CLI est idempotent mais ne remplace pas une stratégie.
 - **Image pinning** : l'état Git doit rendre la version des contrôleurs audit-able ; automatisation d'upgrade n'équivaut pas à déploiement immédiat en production.
 
-## Lab — progressive delivery et exercice de version
+## Lab - progressive delivery et exercice de version
 
 1. Choisir en lab un seul backend Flagger que vous pouvez lancer (ex. Gateway API ou mesh) et suivre son tutoriel officiel d'installation par Flux.
 2. Déclarer une Canary pour une app, définir seuils de trafic, métriques Prometheus et tests de conformance. Simuler une version saine puis une version qui échoue aux métriques.

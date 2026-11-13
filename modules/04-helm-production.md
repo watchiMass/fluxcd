@@ -1,4 +1,4 @@
-# 04 — HelmRelease en production
+# 04 - HelmRelease en production
 
 **Phase : maîtrise · Durée : 4 h**
 
@@ -9,7 +9,7 @@
 - Tester install, upgrade, test hooks, remediation, rollback et drift Helm.
 - Déboguer un release qui échoue sans contourner le contrôle Git.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Source de chart** : HelmRepository/HelmChart convient aux dépôts chart ; OCIRepository convient aux OCI registries. Le choix du type se voit dans le schéma, la provenance et le statut du chart.
 - **Valeurs** : `values` (inline) et `valuesFrom` (ConfigMap/Secret) ont ordre de fusion et `targetPath`; des valeurs découpées favorisent la réutilisation, mais rendent le rendu distribué. Garder la source et les versions déterministes.
@@ -17,7 +17,7 @@
 - **Tests et drift** : les tests Helm peuvent échouer après installation/upgrade ; la détection/correction de drift concerne les objets de la release. Évaluer les interactions avec les controllers externes qui modifient ces champs.
 - **Upgrade** : valeurs incompatibles, CRD, hooks, timeouts et stratégie d'échec sont les causes fréquentes de releases bloqués. `HelmRelease.status` et l'historique Helm sont des données de diagnostic.
 
-## Lab — release d'application et matrice de défaillances
+## Lab - release d'application et matrice de défaillances
 
 1. Déployer un chart Podinfo via OCIRepository ou HelmRepository et `HelmRelease` API `helm.toolkit.fluxcd.io/v2`.
 2. Mettre les valeurs communes dans `values`, les différences staging/prod dans patches, et une valeur externe non sensible dans un ConfigMap `valuesFrom`.

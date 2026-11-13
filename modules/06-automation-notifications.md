@@ -1,4 +1,4 @@
-# 06 — Images, notifications et webhooks
+# 06 - Images, notifications et webhooks
 
 **Phase : maîtrise · Durée : 4 h**
 
@@ -9,7 +9,7 @@
 - Router les événements via `Provider`/`Alert` et déclencher une sync par `Receiver`.
 - Évaluer les risques d'une écriture automatisée sur une branche de déploiement.
 
-## Notions à comprendre — et pourquoi
+## Notions à comprendre - et pourquoi
 
 - **Image reflector** : observe des tags et rend les métadonnées disponibles ; une policy choisit un candidat selon SemVer, alphabetical ou numerical. La policy doit représenter le canal de promotion attendu.
 - **Image automation** : applique les marqueurs YAML puis écrit/pousse une modification Git. Le commit est la preuve et l'entrée du cycle normal de déploiement ; l'automation n'est pas une approbation de sécurité.
@@ -17,7 +17,7 @@
 - **Notification** : `Provider` décrit le destinataire, `Alert` filtre les événements ; les événements sont un signal de diagnostic, pas un bus garantissant une livraison exactement une fois.
 - **Receiver** : webhook entrant authentifie et filtre un événement puis demande une réconciliation. Il accélère le polling sans remplacer celui-ci ; endpoint, secret, TLS, ingress et anti-abus sont à protéger.
 
-## Lab — automatiser une image et rendre l'état observable
+## Lab - automatiser une image et rendre l'état observable
 
 1. Vérifier si `image-reflector-controller` et `image-automation-controller` sont installés : ils ne font pas partie des composants Flux par défaut. Pour les ajouter sans apply direct, produire une version candidate avec `flux install --export --version=v2.10.0 --components-extra=image-reflector-controller,image-automation-controller`, intégrer/revoir le résultat dans `gotk-components.yaml`, puis laisser Git réconcilier.
 2. Publier ou sélectionner une image d'essai dont vous contrôlez les tags. Créer `ImageRepository`, une policy SemVer et des marqueurs dans le manifest de workload.
