@@ -1,4 +1,4 @@
-# Maîtriser Flux CD — parcours pratique orienté production
+# Maîtriser Flux CD - parcours pratique orienté production
 
 Formation avancée pour concevoir, exploiter, dépanner et expliquer une plateforme GitOps Flux de bout en bout. Le parcours s'appuie sur le syllabus KodeKloud pour le socle, puis approfondit les opérations de production et le fonctionnement interne des contrôleurs.
 
