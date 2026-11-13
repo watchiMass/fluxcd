@@ -1,4 +1,4 @@
-# Corrigé 04 — Helm en production
+# Corrigé 04 - Helm en production
 
 ## Indices
 

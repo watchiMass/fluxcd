@@ -1,4 +1,4 @@
-# Corrigé 01 — Socle et bootstrap
+# Corrigé 01 - Socle et bootstrap
 
 ## Indices
 

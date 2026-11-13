@@ -1,4 +1,4 @@
-# Corrigé 08 — Progressive delivery et cycle de vie
+# Corrigé 08 - Progressive delivery et cycle de vie
 
 ## Indices
 

@@ -1,4 +1,4 @@
-# Corrigé 10 — Game day
+# Corrigé 10 - Game day
 
 ## Indices
 

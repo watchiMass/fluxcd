@@ -1,4 +1,4 @@
-# Corrigé 07 — Multi-tenancy et flotte
+# Corrigé 07 - Multi-tenancy et flotte
 
 ## Indices
 

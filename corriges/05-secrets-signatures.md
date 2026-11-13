@@ -1,4 +1,4 @@
-# Corrigé 05 — Secrets et signatures
+# Corrigé 05 - Secrets et signatures
 
 ## Indices
 

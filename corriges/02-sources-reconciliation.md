@@ -1,4 +1,4 @@
-# Corrigé 02 — Sources et réconciliation
+# Corrigé 02 - Sources et réconciliation
 
 ## Indices
 

@@ -1,4 +1,4 @@
-# Corrigé 03 — Dépôts et environnements
+# Corrigé 03 - Dépôts et environnements
 
 ## Indices
 

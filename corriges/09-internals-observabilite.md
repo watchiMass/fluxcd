@@ -1,4 +1,4 @@
-# Corrigé 09 — Internals et observabilité
+# Corrigé 09 - Internals et observabilité
 
 ## Indices
 

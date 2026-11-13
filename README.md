@@ -16,17 +16,17 @@ Formation avancée pour concevoir, exploiter, dépanner et expliquer une platefo
 
 | Module | Phase | Sujet | Temps |
 |---|---|---|---:|
-| [01 — Socle et bootstrap](modules/01-socle-bootstrap.md) | 1 | GitOps, architecture, contrôleurs, bootstrap | 2 h |
-| [02 — Sources et réconciliation](modules/02-sources-reconciliation.md) | 1 | Sources, artefacts, Kustomize, Helm, boucle de réconciliation | 4 h |
+| [01 - Socle et bootstrap](modules/01-socle-bootstrap.md) | 1 | GitOps, architecture, contrôleurs, bootstrap | 2 h |
+| [02 - Sources et réconciliation](modules/02-sources-reconciliation.md) | 1 | Sources, artefacts, Kustomize, Helm, boucle de réconciliation | 4 h |
 | [03 - Dépôts et livraison multi-environnements](modules/03-depots-environnements.md) | 2 | Structure, overlays, dépendances, santé, prune, drift, postBuild | 5 h |
-| [04 — Helm en production](modules/04-helm-production.md) | 2 | HelmRelease, valeurs, remediation, tests et upgrades | 4 h |
-| [05 — Secrets et chaîne de confiance](modules/05-secrets-signatures.md) | 2 | SOPS, age/KMS, cosign, provenance et menaces | 4 h |
-| [06 — Images, notifications et webhooks](modules/06-automation-notifications.md) | 2 | Image automation, Alert/Provider, Receiver et Git write-back | 4 h |
-| [07 — Multi-tenancy et flotte](modules/07-tenancy-flotte.md) | 3 | Impersonation, RBAC, isolation, management/target clusters | 5 h |
-| [08 — Progressive delivery et cycle de vie](modules/08-livraison-cycle-vie.md) | 3 | Flagger, Operator, installation à l'échelle, upgrades Flux | 5 h |
-| [09 — Visibilité et fonctionnement interne](modules/09-internals-observabilite.md) | 3 | Métriques, UI, artefacts, caches, controller-runtime, lecture Go | 5 h |
-| [10 — Game day de dépannage](modules/10-game-day.md) | 4 | Pannes croisées, diagnostic structuré et postmortem | 4–6 h |
-| [Bilan et projets](bilan.md) | — | Checklist de compétences et prolongements | 1 h |
+| [04 - Helm en production](modules/04-helm-production.md) | 2 | HelmRelease, valeurs, remediation, tests et upgrades | 4 h |
+| [05 - Secrets et chaîne de confiance](modules/05-secrets-signatures.md) | 2 | SOPS, age/KMS, cosign, provenance et menaces | 4 h |
+| [06 - Images, notifications et webhooks](modules/06-automation-notifications.md) | 2 | Image automation, Alert/Provider, Receiver et Git write-back | 4 h |
+| [07 - Multi-tenancy et flotte](modules/07-tenancy-flotte.md) | 3 | Impersonation, RBAC, isolation, management/target clusters | 5 h |
+| [08 - Progressive delivery et cycle de vie](modules/08-livraison-cycle-vie.md) | 3 | Flagger, Operator, installation à l'échelle, upgrades Flux | 5 h |
+| [09 - Visibilité et fonctionnement interne](modules/09-internals-observabilite.md) | 3 | Métriques, UI, artefacts, caches, controller-runtime, lecture Go | 5 h |
+| [10 - Game day de dépannage](modules/10-game-day.md) | 4 | Pannes croisées, diagnostic structuré et postmortem | 4–6 h |
+| [Bilan et projets](bilan.md) | - | Checklist de compétences et prolongements | 1 h |
 
 Chaque module contient objectifs, pourquoi, lab concret, critères de réussite, pannes volontaires, questions de compréhension et lien vers **indices**, puis vers le corrigé séparé. Ne consultez les corrigés qu'après avoir consigné vos observations.
 
@@ -59,10 +59,10 @@ Le seul acte initial est l'amorçage : `flux bootstrap` exige une identité Kube
 - [Exemple multi-environnements Kustomize/Helm](https://github.com/fluxcd/flux2-kustomize-helm-example)
 - [Exemple multi-tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
 - [Exemple officiel monitoring Prometheus/Grafana](https://github.com/fluxcd/flux2-monitoring-example)
-- [KodeKloud — GitOps with FluxCD](https://kodekloud.com/courses/gitops-with-fluxcd)
+- [KodeKloud - GitOps with FluxCD](https://kodekloud.com/courses/gitops-with-fluxcd)
 - [Flux releases](https://github.com/fluxcd/flux2/releases)
-- [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator) et [Flux Web UI](https://fluxoperator.dev/web-ui/) — projets d'écosystème distincts des contrôleurs Flux standards.
-- [Flagger](https://docs.flagger.app/) — projet CNCF de progressive delivery.
+- [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator) et [Flux Web UI](https://fluxoperator.dev/web-ui/) - projets d'écosystème distincts des contrôleurs Flux standards.
+- [Flagger](https://docs.flagger.app/) - projet CNCF de progressive delivery.
 
 **Note de nommage des dépôts :** l'URL `fluxcd/flux2-kustomize-example` indiquée dans la demande renvoie 404 au contrôle ; le dépôt d'exemple officiel disponible est `fluxcd/flux2-kustomize-helm-example`, utilisé comme référence pour ce cours.
 

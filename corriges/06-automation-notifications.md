@@ -1,4 +1,4 @@
-# Corrigé 06 — Images et notifications
+# Corrigé 06 - Images et notifications
 
 ## Indices
 
