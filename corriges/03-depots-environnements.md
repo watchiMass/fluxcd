@@ -5,7 +5,7 @@
 1. Dessine les limites d'accès et les limites de transaction avant de choisir la forme des dépôts.
 2. Une `dependsOn` cible une Kustomization Flux, et la dépendance doit satisfaire son critère de santé.
 3. Ne fais pas de `prune` sur un état persistant pendant l'apprentissage ; vérifie les événements et l'inventaire d'abord.
-4. Une variable absente dans `substituteFrom` ou dans le dictionnaire de substitution peut causer un rendu inattendu ; inspecte les logs du build.
+4. Une variable absente dans `substituteFrom` ou dans le dictionnaire de substitution est remplacée par une chaîne vide (sauf `${VAR:=defaut}`), ce qui peut produire un rendu valide mais faux ; inspecter le manifest rendu et les logs du build.
 
 ## Corrigé
 

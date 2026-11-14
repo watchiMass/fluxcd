@@ -16,14 +16,15 @@
 - **Séparation des responsabilités** : source-controller produit les Sources/artefacts ; kustomize-controller applique les ressources ; helm-controller pilote les actions Helm ; les autres contrôleurs couvrent notifications, images et automatisation.
 - **Bootstrap** : une action privilégiée installe les contrôleurs et leur configuration de sync dans Git. Les futures modifications de Flux peuvent ensuite être livrées par Git. Comprendre l'exception bootstrap évite de prétendre que l'installation initiale n'a aucun accès direct au cluster.
 - **Reconciliation, pas pipeline linéaire** : événements et intervalles réveillent les contrôleurs ; l'idempotence et les retries tolèrent les erreurs temporaires.
+- **ConfigMap monté en volume** : Flux met à jour l'objet ConfigMap, mais ce sont les Pods qui doivent relire le fichier. Un volume ConfigMap est rafraîchi par le kubelet avec un délai ; `subPath` ne reçoit pas ces mises à jour et les variables d'environnement ne changent qu'au redémarrage du Pod.
 
 ## Lab - bootstrap et première livraison Git
 
 1. Suivre les prérequis du [squelette](../depot-exemple/README.md), créer un cluster kind isolé et un dépôt GitHub privé.
-2. Contrôler les prérequis avec `flux check --pre`; installer une version CLI explicite `v2.10.0`, puis examiner `flux bootstrap github --help`.
-3. Bootstrapper dans `clusters/lab` avec `flux bootstrap github --owner=<...> --repository=<...> --branch=main --path=clusters/lab`. Le PAT utilisé pour piloter l'API GitHub reste local au bootstrap ; Flux utilise par défaut une deploy key SSH. Garder la branche principale protégée et conserver tout credential hors du dépôt.
-4. Vérifier le commit de bootstrap et ses fichiers générés, les Deployments contrôleurs, le `GitRepository/flux-system` et le `Kustomization/flux-system`.
-5. Faire un commit qui modifie un ConfigMap dans `depot-exemple/apps/lab/`. Suivre le changement depuis la nouvelle révision source jusqu'au `Kustomization` appliqué.
+2. Installer une version CLI explicite `v2.10.0`, contrôler les prérequis avec `flux check --pre`, puis examiner `flux bootstrap github --help`.
+3. Bootstrapper dans `clusters/lab` avec `flux bootstrap github --owner=<...> --repository=<...> --branch=main --path=clusters/lab`. Ajoutez `--personal` si le propriétaire est un compte GitHub personnel ; omettez-le pour une organisation. Le PAT (droits d'administration du dépôt) sert au bootstrap et reste local ; Flux utilise par défaut une deploy key SSH en lecture seule, dont la clé privée est stockée dans le Secret `flux-system`. Garder la branche principale protégée et conserver tout credential hors du dépôt.
+4. Vérifier le commit de bootstrap et les fichiers générés sous `clusters/lab/flux-system/` (`gotk-components.yaml`, `gotk-sync.yaml`, `kustomization.yaml`), les Deployments contrôleurs, le `GitRepository/flux-system` et le `Kustomization/flux-system`. Votre `clusters/lab/kustomization.yaml` initial est conservé : il référence le dossier `flux-system/` généré.
+5. Dans votre dépôt (pas le dossier du cours), modifier `apps/lab/configmap.yaml` et committer. Suivre le changement depuis la nouvelle révision source jusqu'à l'objet ConfigMap appliqué, puis jusqu'au fichier monté dans le Pod. `flux reconcile kustomization lab-apps -n flux-system` accélère la réconciliation.
 6. Enregistrer un diagramme de la chaîne et noter quel composant détient chaque responsabilité.
 
 Commandes d'observation possibles : `flux check`, `flux get sources git -A`, `flux get kustomizations -A`, `flux events -A`, `kubectl -n flux-system get deploy,pods`, `kubectl -n flux-system describe gitrepository flux-system`.
@@ -31,7 +32,7 @@ Commandes d'observation possibles : `flux check`, `flux get sources git -A`, `fl
 ## Critères de réussite
 
 - Tous les contrôleurs attendus sont Ready et l'état de sync signale une révision Git précise.
-- Le changement du ConfigMap apparaît après un commit, sans `kubectl apply`.
+- Le changement du ConfigMap est visible dans l'objet Kubernetes puis, après le délai de propagation du kubelet (généralement moins de deux minutes), dans `/usr/share/nginx/html/index.html` du Pod, sans `kubectl apply` ni redémarrage manuel.
 - Vous pouvez expliquer pourquoi bootstrap nécessite une autorité initiale, et ce qui doit ensuite vivre dans Git.
 - Les fichiers générés de bootstrap sont compris (sans divulguer de credentials).
 
@@ -45,6 +46,7 @@ Sur un lab jetable, introduire une URL Git invalide, puis un chemin source inexi
 2. Quel est le rôle de `GitRepository.status.artifact` et où Kustomize trouve-t-il son entrée ?
 3. À quoi sert le commit créé par bootstrap et comment éviter qu'il soit supprimé par inadvertance ?
 4. Que se passe-t-il si la source Git est temporairement inaccessible ?
+5. Pourquoi le fichier monté peut-il rester inchangé quelques minutes après que le ConfigMap est déjà à jour ?
 
 ## Progression sans solution immédiate
 

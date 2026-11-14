@@ -20,8 +20,8 @@
 
 1. Installer `sops`, `age` et `cosign` localement, générer une clé age réservée au lab. Ajouter uniquement la clé publique/recipient et `.sops.yaml` au dépôt.
 2. Créer un manifeste Secret factice, chiffrer ses valeurs avant commit ; vérifier que le diff Git ne révèle pas le plaintext.
-3. Ajouter `spec.decryption.provider: sops` à la Kustomization concernée et publier la clé privée via un mécanisme hors Git compatible avec le lab (Secret installé par bootstrap contrôlé ou mécanisme cloud). Documenter le périmètre et le risque.
-4. Faire tourner la clé en gardant temporairement les deux recipients ; ré-encrypter et vérifier l'absence de valeur lisible dans Git. Retirer l'ancien recipient après bascule.
+3. Ajouter `spec.decryption.provider: sops` à la Kustomization concernée et publier la clé privée via un mécanisme hors Git compatible avec le lab (Secret installé par bootstrap contrôlé ou mécanisme cloud). Le Secret référencé par `spec.decryption.secretRef.name` doit contenir une entrée `*.agekey` (par exemple `age.agekey`). Documenter le périmètre et le risque.
+4. Faire tourner la clé en gardant temporairement les deux recipients ; exécuter `sops updatekeys` sur les fichiers concernés, vérifier l'absence de valeur lisible dans Git, déployer la nouvelle clé privée et confirmer le déchiffrement avant de retirer l'ancien recipient. Après le retrait, relancer `sops updatekeys` puis retirer l'ancienne clé du cluster.
 5. Publier ou sélectionner un artefact OCI de test signé. Ajouter `verify.provider: cosign` à un `OCIRepository` et n'autoriser que la clé publique ou le couple `issuer`/`subject` OIDC attendu. Confirmer `SourceVerified=True`, puis provoquer une signature manquante ou une identité non autorisée et vérifier que l'artefact n'est pas consommé.
 6. Vérifier aussi une image de contrôleur Flux avec la procédure officielle, puis examiner SBOM/provenance ; ne pas copier aveuglément une regex d'exemple dans une politique de prod.
 7. Proposer une politique de promotion d'image applicative signée et l'action de refus. Exécuter uniquement sur un registre/cluster de test.

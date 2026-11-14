@@ -20,7 +20,7 @@
 
 ## Lab - suivre quatre Sources et deux consommateurs
 
-1. Comparer puis manipuler les sources : GitRepository sur le dépôt du cours ; HelmRepository/HelmChart sur le dépôt chart public de test ; OCIRepository sur un OCI artifact ; Bucket sur un endpoint S3-compatible éphémère. Le secret d'accès Bucket est fourni hors Git. Pour chaque objet, observer si l'artefact est Ready et examiner sa révision/digest.
+1. Comparer puis manipuler les sources : GitRepository sur votre dépôt fil rouge ; HelmRepository/HelmChart sur un dépôt de charts public (par exemple `https://stefanprodan.github.io/podinfo`) ; OCIRepository sur un artefact OCI de test ; Bucket sur un endpoint S3-compatible éphémère (MinIO ou LocalStack). Le secret d'accès Bucket est fourni hors Git. Pour chaque objet, observer si l'artefact est Ready et examiner sa révision/digest.
 2. Depuis le dépôt fil rouge, examiner `GitRepository/flux-system`: URL, ref, intervalle, secret éventuel, statut, revision, URL et digest d'artefact.
 3. Ajouter par commit une Kustomization enfant pour `apps/lab`, puis la suivre. Modifier une valeur et corréler le nouvel artefact, les événements et les objets gérés.
 4. Déployer deux HelmRelease éphémères, un alimenté par HelmRepository/HelmChart et un par OCIRepository, en suivant le schéma v2 de la [doc officielle](https://fluxcd.io/flux/components/helm/helmreleases/). Comparer les Sources et statuts intermédiaires. Ne pas épingler `latest` en production.
@@ -36,7 +36,7 @@
 
 ## Pannes volontaires
 
-Dans le dépôt de lab, provoquer successivement un ref Git inexistant, un YAML invalide, une ressource qui ne passe pas l'admission et un selector de health check erroné. Utiliser `flux trace kustomization <nom> -n <namespace>`, `flux logs`, `flux events` et `kubectl describe`. Identifier la dernière étape réussie pour chaque panne.
+Dans le dépôt de lab, provoquer successivement un ref Git inexistant, un YAML invalide, une ressource qui ne passe pas l'admission et un selector de health check erroné. Utiliser `flux trace kustomization <nom> -n <namespace>` (commande en preview), `flux logs`, `flux events` et `kubectl describe`. Identifier la dernière étape réussie pour chaque panne.
 
 ## Questions de compréhension
 

@@ -4,7 +4,7 @@ Formation avancée pour concevoir, exploiter, dépanner et expliquer une platefo
 
 ## Cible et prérequis
 
-- **Flux ciblé : v2.10.0**, dernière version stable publiée le 26 octobre 2026 et vérifiée le 12 novembre 2026. Vérifier les versions et notes de version avant chaque nouvelle cohorte ou déploiement.
+- **Flux ciblé : v2.10.0**, dernière version stable publiée le 26 octobre 2026 et vérifiée le 14 novembre 2026. Vérifier les versions et notes de version avant chaque nouvelle cohorte ou déploiement.
 - API utilisées dans les exemples : `source.toolkit.fluxcd.io/v1`, `kustomize.toolkit.fluxcd.io/v1`, `helm.toolkit.fluxcd.io/v2`, `image.toolkit.fluxcd.io/v1`, `notification.toolkit.fluxcd.io/v1`.
 - Kubernetes avancé, Git, Kustomize et notions Helm. Pour les labs, kind ou un cluster cloud, GitHub et une machine avec `kubectl`, `flux`, `git`, `cosign`, `sops` et `age`.
 - Prérequis Kubernetes selon la documentation Flux consultée : Kubernetes 1.35 ou ultérieur. Contrôler cette exigence à nouveau pour le cluster et les versions utilisées.
@@ -45,6 +45,8 @@ Le seul acte initial est l'amorçage : `flux bootstrap` exige une identité Kube
 5. Pour chaque panne : observer les conditions, événements, journaux et révisions avant de corriger. Les causes attendues ne sont indiquées que dans `corriges/`.
 6. Après un module, expliquer le chemin d'une modification Git jusqu'à l'objet Kubernetes, les statuts attendus et les limites de l'architecture.
 
+Les commandes `flux trace`, `flux logs` et `flux events` sont marquées en preview par la CLI v2.10.0 : les utiliser pour observer, sans en faire une dépendance d'automatisation.
+
 ## Références de départ
 
 - [Documentation officielle Flux](https://fluxcd.io/flux/)
@@ -64,6 +66,6 @@ Le seul acte initial est l'amorçage : `flux bootstrap` exige une identité Kube
 - [Flux Operator](https://github.com/controlplaneio-fluxcd/flux-operator) et [Flux Web UI](https://fluxoperator.dev/web-ui/) - projets d'écosystème distincts des contrôleurs Flux standards.
 - [Flagger](https://docs.flagger.app/) - projet CNCF de progressive delivery.
 
-**Note de nommage des dépôts :** l'URL `fluxcd/flux2-kustomize-example` indiquée dans la demande renvoie 404 au contrôle ; le dépôt d'exemple officiel disponible est `fluxcd/flux2-kustomize-helm-example`, utilisé comme référence pour ce cours.
+**Note de nommage des dépôts :** le dépôt d'exemple officiel est [`fluxcd/flux2-kustomize-helm-example`](https://github.com/fluxcd/flux2-kustomize-helm-example). Le nom `fluxcd/flux2-kustomize-example` n'existe pas (404).
 
 Les exemples sont rédigés contre les API mentionnées ci-dessus. La documentation web évolue indépendamment du présent cours : avant un usage production, vérifier les CRD installées, les versions compatibles, le schéma (`flux install --export` ou manifestes de la version retenue) et les notes de version. Les commandes de signature, d'identité cloud et de bootstrap doivent être adaptées au fournisseur et au modèle de menace de l'organisation.

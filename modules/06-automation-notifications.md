@@ -13,15 +13,15 @@
 
 - **Image reflector** : observe des tags et rend les métadonnées disponibles ; une policy choisit un candidat selon SemVer, alphabetical ou numerical. La policy doit représenter le canal de promotion attendu.
 - **Image automation** : applique les marqueurs YAML puis écrit/pousse une modification Git. Le commit est la preuve et l'entrée du cycle normal de déploiement ; l'automation n'est pas une approbation de sécurité.
-- **Credentials en écriture** : permissions minimales, branche dédiée/PR si possible, identité robot tracée et protections Git. Éviter qu'un contrôleur capable de pousser puisse modifier tout le dépôt.
+- **Credentials en écriture** : permissions minimales, branche dédiée/PR si possible, identité robot tracée et protections Git. Le deploy key créé par `flux bootstrap` est en lecture seule par défaut ; l'automation d'images nécessite donc une identité d'écriture explicitement activée (`--read-write-key`) ou un credential dédié. Éviter qu'un contrôleur capable de pousser puisse modifier tout le dépôt.
 - **Notification** : `Provider` décrit le destinataire, `Alert` filtre les événements ; les événements sont un signal de diagnostic, pas un bus garantissant une livraison exactement une fois.
 - **Receiver** : webhook entrant authentifie et filtre un événement puis demande une réconciliation. Il accélère le polling sans remplacer celui-ci ; endpoint, secret, TLS, ingress et anti-abus sont à protéger.
 
 ## Lab - automatiser une image et rendre l'état observable
 
-1. Vérifier si `image-reflector-controller` et `image-automation-controller` sont installés : ils ne font pas partie des composants Flux par défaut. Pour les ajouter sans apply direct, produire une version candidate avec `flux install --export --version=v2.10.0 --components-extra=image-reflector-controller,image-automation-controller`, intégrer/revoir le résultat dans `gotk-components.yaml`, puis laisser Git réconcilier.
+1. Vérifier si `image-reflector-controller` et `image-automation-controller` sont installés : ils ne font pas partie des composants Flux par défaut. Pour les ajouter sans apply direct, produire une version candidate avec `flux install --export --version=v2.10.0 --components-extra=image-reflector-controller,image-automation-controller`, intégrer/revoir le résultat dans `clusters/lab/flux-system/gotk-components.yaml`, puis laisser Git réconcilier.
 2. Publier ou sélectionner une image d'essai dont vous contrôlez les tags. Créer `ImageRepository`, une policy SemVer et des marqueurs dans le manifest de workload.
-3. Configurer `ImageUpdateAutomation` sur une branche de lab, avec identité Git dédiée, chemin restreint et message de commit informatif.
+3. Configurer `ImageUpdateAutomation` sur une branche de lab, avec identité Git dédiée, chemin restreint et message de commit informatif. Le deploy key par défaut est en lecture seule : activer une identité d'écriture (`--read-write-key=true` au bootstrap ou credential dédié à scope minimal).
 4. Publier un nouveau tag, suivre les statuts ImageRepository/ImagePolicy, examiner le commit produit et laisser la chaîne normale Flux appliquer le nouvel état.
 5. Configurer un Provider non productif (par exemple webhook de test) et une Alert limitée aux erreurs des objets du lab.
 6. Configurer un Receiver GitHub/webhook seulement si vous disposez d'un endpoint TLS de lab. Examiner `status.webhookPath`, secrets, ressources écoutées et l'authenticité du payload.

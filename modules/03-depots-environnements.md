@@ -24,7 +24,7 @@
 1. Étendre le squelette en `apps/base`, `apps/staging`, `apps/production`, `infrastructure/controllers` et `infrastructure/configs`; écrire les règles de promotion dans un ADR court.
 2. Créer une Kustomization pour un namespace/configuration de plateforme et une Kustomization d'application dépendante via `dependsOn`.
 3. Créer des overlays staging/prod qui dérivent d'une base commune ; utiliser patches ciblés pour replicas/ressources/hostnames.
-4. Ajouter une substitution non secrète, par exemple `CLUSTER_ENV`/`CLUSTER_NAME`, via ConfigMap versionnée et `postBuild.substituteFrom`. Observer exactement le manifest rendu et contrôler les `${...}` résiduels.
+4. Ajouter une substitution non secrète, par exemple `CLUSTER_ENV`/`CLUSTER_NAME`, via ConfigMap versionnée et `postBuild.substituteFrom`. Observer exactement le manifest rendu : une variable absente est remplacée par une chaîne vide (sauf valeur par défaut `${VAR:=valeur}`), donc vérifier les valeurs vides inattendues plutôt que des `${...}` résiduels.
 5. Tester le `healthChecks` sur un Deployment puis la dépendance d'app sur une CRD opérateur. Rendre l'ordre et les critères de santé vérifiables.
 6. Faire une modification non destructive puis un commit de rollback ; comparer les révisions et le temps de convergence.
 7. En environnement jetable, activer prune, retirer un objet de test, puis examiner l'inventaire et l'événement. Ne pas employer une PVC/CRD partagée pour cet exercice.

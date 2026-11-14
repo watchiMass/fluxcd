@@ -12,5 +12,5 @@ Un chart source indisponible est une panne du chemin Source/HelmChart. Une valeu
 
 Le template `.spec.chart` peut mettre à jour chart et `values` dans une même spécification HelmRelease. Pour le chart de production, la référence et les valeurs doivent suivre une stratégie de versions approuvée ; ne pas utiliser `latest`. Les valeurs externes sont fusionnées selon l'ordre documenté et leurs sources doivent exister dans le namespace attendu.
 
-Les limites de retries/remediation sont des garde-fous, pas une garantie de retour automatique à la version souhaitée dans tous les cas. Pour un upgrade bloqué, corriger la spec via Git, réconcilier, puis vérifier le release réellement installé. Configurer des exclusions de drift uniquement pour les champs effectivement possédés par un autre contrôleur.
+Les limites de retries/remediation sont des garde-fous, pas une garantie de retour automatique à la version souhaitée dans tous les cas. Pour un upgrade bloqué, corriger la spec via Git, réconcilier, puis vérifier le release réellement installé. Configurer des exclusions de drift (`driftDetection.ignore[].paths`, par exemple `/spec/replicas` pour un HPA) ou l'annotation `helm.toolkit.fluxcd.io/driftDetection: disabled` uniquement pour les champs effectivement possédés par un autre contrôleur.
 

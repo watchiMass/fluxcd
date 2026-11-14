@@ -21,7 +21,7 @@
 
 Demander à un collègue ou à un script de préparation de choisir **3 à 5 pannes** dans les modules, sans vous révéler leur sélection. Si vous êtes seul, tirer une combinaison au hasard en utilisant seulement les indices, et masquer les fichiers de corrections.
 
-Scénarios candidats : commit absent de la branche suivie ; accès Git révoqué ; dependency sur une Kustomization `Stalled` ; substitution non résolue ; Secret SOPS indéchiffrable ; chart inaccessible ; policy d'image sans sélection ; RBAC du tenant insuffisant ; webhook reçu mais mauvais resource selector ; controller prêt mais workload non sain.
+Scénarios candidats : commit absent de la branche suivie ; accès Git révoqué ; dépendance sur une Kustomization `Stalled` ; substitution non résolue ; Secret SOPS indéchiffrable ; chart inaccessible ; policy d'image sans sélection ; RBAC du tenant insuffisant ; webhook reçu mais mauvais resource selector ; controller prêt mais workload non sain.
 
 Procédure :
 
@@ -30,6 +30,8 @@ Procédure :
 3. Construire une hypothèse par panne et l'associer à une preuve ; noter aussi les hypothèses réfutées.
 4. Corriger par PR/commit ou rollback documenté. Réconcilier et mesurer le temps de convergence.
 5. Vérifier l'état final dans Git, Flux et Kubernetes ; rédiger un postmortem avec action de prévention et propriétaire.
+
+`flux trace`, `flux logs` et `flux events` sont en preview dans la CLI v2.10.0 : vérifier leur syntaxe avec `--help` et ne pas en faire une dépendance d'automatisation.
 
 ## Critères de réussite
 

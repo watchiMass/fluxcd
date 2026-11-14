@@ -14,7 +14,7 @@
 - **Source de chart** : HelmRepository/HelmChart convient aux dépôts chart ; OCIRepository convient aux OCI registries. Le choix du type se voit dans le schéma, la provenance et le statut du chart.
 - **Valeurs** : `values` (inline) et `valuesFrom` (ConfigMap/Secret) ont ordre de fusion et `targetPath`; des valeurs découpées favorisent la réutilisation, mais rendent le rendu distribué. Garder la source et les versions déterministes.
 - **Remediation** : les stratégies/retries d'install et upgrade modèlent les échecs. Elles n'assurent pas que l'application est saine ; définir aussi tests Helm et health assessment.
-- **Tests et drift** : les tests Helm peuvent échouer après installation/upgrade ; la détection/correction de drift concerne les objets de la release. Évaluer les interactions avec les controllers externes qui modifient ces champs.
+- **Tests et drift** : les tests Helm peuvent échouer après installation/upgrade ; la détection/correction de drift concerne les objets de la release. Elle se configure par `spec.driftDetection.mode` (`warn` pour signaler, `enabled` pour corriger) ; sans ce bloc, elle est désactivée. Évaluer les interactions avec les controllers externes qui modifient ces champs.
 - **Upgrade** : valeurs incompatibles, CRD, hooks, timeouts et stratégie d'échec sont les causes fréquentes de releases bloqués. `HelmRelease.status` et l'historique Helm sont des données de diagnostic.
 
 ## Lab - release d'application et matrice de défaillances
@@ -23,7 +23,7 @@
 2. Mettre les valeurs communes dans `values`, les différences staging/prod dans patches, et une valeur externe non sensible dans un ConfigMap `valuesFrom`.
 3. Activer `test.enable`, choisir un intervalle/timeout raisonnable, et documenter la stratégie de remediation pour install et upgrade.
 4. Faire un upgrade valide, puis tester un upgrade volontairement invalide dans un chart de lab ; enregistrer `helm-controller` logs, événements, conditions et historique release.
-5. Tester les modes de drift detection en espace jetable. Vérifier quelles annotations/paths vous excluez et justifier chaque exception.
+5. Tester `driftDetection.mode: warn` puis `enabled` en espace jetable. N'exclure des chemins (`ignore[].paths`) ou des cibles (`ignore[].target`) que si un autre contrôleur possède réellement le champ, et justifier chaque exception.
 6. Corriger par Git, réconcilier et vérifier la révision finale. Ne pas éditer les ressources Helm possédées directement.
 
 ## Critères de réussite

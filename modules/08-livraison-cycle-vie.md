@@ -13,9 +13,9 @@
 
 - **Flagger** : génère/observe des ressources de release progressives avec un mesh, ingress ou Gateway API compatible ; analyse métriques et tests avant promotion/rollback. Sans fournisseur de routage et métriques, le canary n'est pas une preuve.
 - **Deux boucles déclaratives** : Flux gère les CRDs/contrôleurs Flagger et déclare la ressource Canary ; Flagger agit sur le rollout de l'application. Définir propriétaires de champs et éviter les conflits.
-- **Flux Operator** : projet d'écosystème pour installer/gérer Flux de manière déclarative et multi-clusters ; API et mode d'exploitation diffèrent du bootstrap CLI. Evaluer maturité, version, support et implications avant choix.
+- **Flux Operator** : projet d'écosystème pour installer/gérer Flux de manière déclarative et multi-clusters ; API et mode d'exploitation diffèrent du bootstrap CLI. Évaluer maturité, version, support et implications avant choix.
 - **Mise à jour des contrôleurs** : compatibilité CRD/controller/Kubernetes, ordre de mise à jour, canary dans un cluster non critique, fenêtre de rollback et vérification des nouveaux comportements. Le bootstrap CLI est idempotent mais ne remplace pas une stratégie.
-- **Image pinning** : l'état Git doit rendre la version des contrôleurs audit-able ; automatisation d'upgrade n'équivaut pas à déploiement immédiat en production.
+- **Image pinning** : l'état Git doit rendre la version des contrôleurs auditable ; automatisation d'upgrade n'équivaut pas à déploiement immédiat en production.
 
 ## Lab - progressive delivery et exercice de version
 
